@@ -1,0 +1,20 @@
+public class LowGravityPlayer : MonoBehaviour
+{
+    [Header("Low Gravity Settings")]
+    public float gravityMultiplier = 0.2f; // 0.2 = 20% of normal gravity
+
+    private Rigidbody rb;
+    private Vector3 customGravity;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false; // Disable Unity's built-in gravity
+        customGravity = Physics.gravity * gravityMultiplier;
+    }
+
+    void FixedUpdate()
+    {
+        rb.AddForce(customGravity, ForceMode.Acceleration);
+    }
+}
